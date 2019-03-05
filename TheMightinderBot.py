@@ -1,3 +1,4 @@
+import telegram
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from settings import *
 import logging
@@ -5,6 +6,7 @@ import os
 import sys
 from auxiliary_functions import threaded, check_running, change_running_state, file_lock
 from TheMightinder import TheMightinder
+
 
 APITOKEN = ""
 
@@ -78,6 +80,7 @@ class TheMightinderBot:
         """
         if update.message.from_user.name == TG_USERNAME and self.allowed:
             self.send_tinder_stats(context)
+        else:
 
 
     def start_marathon(self, update, context):
@@ -93,7 +96,8 @@ class TheMightinderBot:
                 context.bot.send_message(chat_id=update.message.chat_id, text="Sorry, <i>TheMightinder</i> is already "
                                                                               "running.\nIf you want to restart it, "
                                                                               "please type /stop and then "
-                                                                              "/start_marathon.")
+                                                                              "/start_marathon.",
+                                         parse_mode=telegram.ParseMode.HTML)
 
             else:
                 change_running_state()
@@ -104,7 +108,7 @@ class TheMightinderBot:
                                                                           "Good luck!")
 
         else:
-            context.bot.send_message(chat_id=update.message.chat_id, text="Sorry, you are not allowed to talk with "
+            context.bot.send_message(chat_id=update.message.chat_id, text="Sorry, you are not allowed to to with "
                                                                           "me.\nBye bye! :)")
 
     def start_autolike(self, update, context):
@@ -147,7 +151,8 @@ class TheMightinderBot:
                 context.bot.send_message(chat_id=update.message.chat_id, text="Sorry, <i>TheMightinder</i> is not running at "
                                                                               "this time.\nIf you want to start some "
                                                                               "functionality, please type /help to "
-                                                                              "view available commands.")
+                                                                              "view available commands.",
+                                         parse_mode=telegram.ParseMode.HTML)
 
             else:
                 change_running_state()
