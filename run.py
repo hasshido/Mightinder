@@ -21,7 +21,7 @@ if __name__ == "__main__":
         raise argparse.ArgumentTypeError("Invalid configuration. You have selected both -m and -a. Select just one")
 
     # dislake_rate. If not set, is allways 0.01
-    dislike_ratio = float(args.disliker / 100)
+    dislike_ratio = float(args.ratio / 100)
 
     theMightinder = TheMightinder(dislike_ratio)
     theMightinderBot = TheMightinderBot()
