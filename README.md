@@ -1,7 +1,15 @@
 # README
 
+### Installation
+
+- Install Python
+- Download or clone the package.
+	- Go to the program folder
+	- `pip install -r requirements.txt`
+
+
 ### Usage
-Just install requirements.txt, and call the script as follows:
+
 ```
 usage: python Mightinder.py 
 		     
@@ -31,17 +39,18 @@ These are the intended next functionalities that will be included into **MighTin
 	 - This could be "exploitable" with multiple "get nearby users" and swiping the third card
  - Telegram Bot
 	 - Remote control of program execution
+	 - Document the remote control capabilities
 	 - Setup new matching position through attached location
 
 
 ### Fixes
 
  - Pack with Pynder modified library
-	 - User.py gives schools id error:  setu generic exception catch
+	 - `User.py gives schools id error:  set generic exception catch`
     
 ## Done
  - Auto-like stack of swipes
- -  Implemented access to [Remaining Superlikes]
+ - Implemented access to [Remaining Superlikes]
  - Marathon mode (sleep through swiping timeout)
  - Filters
 	 - Dislike filter
