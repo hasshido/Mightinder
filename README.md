@@ -47,6 +47,10 @@ These are the intended next functionalities that will be included into **MighTin
 
  - Pack with Pynder modified library
 	 - `User.py gives schools id error:  set generic exception catch`
+ - Fix behaviour on "Bio_check" events
+ 	 - `print correctly on console`
+ - Settings folder should be in .gitignore to avoid APIKEY leaking
+	 - Also, APKIEY should be on settings folder
     
 ## Done
  - Auto-like stack of swipes
