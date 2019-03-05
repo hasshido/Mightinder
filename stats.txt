@@ -1,4 +1,4 @@
-[INFO] Total interactions performed: 2
+[INFO] Total interactions performed: 0
 [INFO] Superlikes performed: 0
-[INFO] Likes performed: 2
+[INFO] Likes performed: 0
 [INFO] Dislikes performed: 0

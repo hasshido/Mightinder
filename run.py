@@ -1,6 +1,6 @@
 from TheMightinderBot import TheMightinderBot
 from TheMightinder import TheMightinder
-from auxiliary_functions import check_positive
+from auxiliary_functions import check_positive, set_running_state
 import argparse
 
 
@@ -18,7 +18,7 @@ if __name__ == "__main__":
     n_args_not_empty = sum(1 for arg_value in args_dict.values() if arg_value)
 
     if args.marathon and args.auto:
-        raise argparse.ArgumentTypeError("Invalid configuration. You have selected both -m and -a. Select just one")
+        raise argparse.ArgumentTypeError("Invalid configuration. You have selected both -m and -a. Select just one.")
 
     # dislake_rate. If not set, is allways 0.01
     dislike_ratio = float(args.ratio / 100)
@@ -26,14 +26,16 @@ if __name__ == "__main__":
     theMightinder = TheMightinder(dislike_ratio)
     theMightinderBot = TheMightinderBot()
 
+    set_running_state(True)
+
     if args.bot:
         theMightinderBot.runBot()
 
     if n_args_not_empty == 1 or args.auto:
-        theMightinder.auto_likes(max_likes=2)
+        theMightinder.start_liker("a", max_likes=2)
 
     elif args.marathon:
-        theMightinder.marathon()
+        theMightinder.start_liker("m")
 
 
 
