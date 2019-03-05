@@ -9,7 +9,7 @@ from random import random, randint
 from time import sleep
 from settings import *
 from colorama import Fore
-from auxiliary_functions import threaded
+from auxiliary_functions import threaded, check_running, file_lock, change_running_state
 
 
 class TheMightinder:
@@ -92,18 +92,17 @@ class TheMightinder:
         else:
             return action
 
-    @threaded
     def auto_likes(self, max_likes=25):
       
         stopper = max_likes
-        
+
         if self.session:
 
             users = self.session.nearby_users()
 
             for u in users:
 
-                if stopper == 0:
+                if not check_running() or stopper == 0:
                     break
 
                 try:
@@ -174,24 +173,47 @@ class TheMightinder:
         else:
             print(Fore.RED + "[ERROR] Sessions is None.")
 
-    def marathon(self):   
-        while True: 
+    def marathon(self):
+
+        stop = False
+        while not stop:
             try:
                 self.auto_likes()
                 # Tinder Default 12h (+5m) like reset for non-premium accounts.
-                sleep(SWIPES_REFRESH_TIMEOUT)
+                for i in range(1, SWIPES_REFRESH_TIMEOUT):
+                    if not check_running():
+                        stop = True
+                        break
+                    else:
+                        sleep(1)
 
             except KeyboardInterrupt:
                 print(Fore.GREEN + "[OK] Execution was interrupted by user")
                 self.show_stats()
                 sys.exit()
 
+        print(Fore.GREEN + "[OK] Execution was interrupted by telegram Bot")
+        self.show_stats()
+        sys.exit()
+
+    @threaded
+    def start_liker(self, type, max_likes=25):
+        if type == "m":
+            self.marathon()
+        else:
+            self.auto_likes(max_likes)
+
+        # We have finished the execution of any kind of function
+        # We have to change the execution state to False
+        if check_running():
+            change_running_state()
+
     def show_stats(self):
         total_stats = self.like_count + self.dislike_count + self.superlike_count
-        print(Fore.WHITE + "[INFO] Total interactions performed: " + total_stats)
-        print(Fore.WHITE + "[INFO] Superlikes performed: " + self.superlike_count)
-        print(Fore.WHITE + "[INFO] Likes performed: " + self.like_count)
-        print(Fore.WHITE + "[INFO] Dislikes performed: " + self.dislike_count)
+        print(Fore.WHITE + "[INFO] Total interactions performed: " + str(total_stats))
+        print(Fore.WHITE + "[INFO] Superlikes performed: " + str(self.superlike_count))
+        print(Fore.WHITE + "[INFO] Likes performed: " + str(self.like_count))
+        print(Fore.WHITE + "[INFO] Dislikes performed: " + str(self.dislike_count))
 
 
     def print_stats(self):
@@ -201,13 +223,18 @@ class TheMightinder:
         if os.path.isfile(parent_folder + STATSFILE):
             os.remove(parent_folder + STATSFILE)
 
-        statfile = open(STATSFILE, "w")
-        total_stats = self.like_count + self.dislike_count + self.superlike_count
-        statfile.write("[INFO] Total interactions performed: " + str(total_stats) + "\n")
-        statfile.write("[INFO] Superlikes performed: " + str(self.superlike_count) + "\n")
-        statfile.write("[INFO] Likes performed: " + str(self.like_count) + "\n")
-        statfile.write("[INFO] Dislikes performed: " + str(self.dislike_count) + "\n")
-        statfile.close()
+        # Mutex to access stat file
+        file_lock.acquire()
+        try:
+            statfile = open(STATSFILE, "w")
+            total_stats = self.like_count + self.dislike_count + self.superlike_count
+            statfile.write("[INFO] Total interactions performed: " + str(total_stats) + "\n")
+            statfile.write("[INFO] Superlikes performed: " + str(self.superlike_count) + "\n")
+            statfile.write("[INFO] Likes performed: " + str(self.like_count) + "\n")
+            statfile.write("[INFO] Dislikes performed: " + str(self.dislike_count) + "\n")
+            statfile.close()
+        finally:
+            file_lock.release()
 
     # Returns true or false (Blacklist on bio == hate // Lovelist on bio = love)
     def check_bio(self, user):
