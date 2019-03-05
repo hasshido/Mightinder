@@ -20,19 +20,19 @@ class TheMightinderBot:
 
 
     def start(self, update, context):
-        context.bot.send_message(chat_id=update.message.chat_id, text="Welcome to TheAlmightinder reporting system! Im "
-                                                                      "your personal bot and i'm glad to start working "
+        context.bot.send_message(chat_id=update.message.chat_id, text="Welcome to TheAlmightinder reporting system! I'm "
+                                                                      "your personal bot and I'm glad to start working "
                                                                       "with you.")
         username = update.message.from_user.name
         if username == TG_USERNAME:
-            context.bot.send_message(chat_id=update.message.chat_id, text="Now you are allowed to talk with me. "
-                                                                          "You can request your stats at any time"
-                                                                          " with /stats command. Enjoy!")
+            context.bot.send_message(chat_id=update.message.chat_id, text="Now you are allowed to talk to me. "
+                                                                          "Request your stats at any time using"
+                                                                          " /stats command. Enjoy!")
         self.allowed = True
         self.myUserID = update.message.chat_id
 
         if not self.allowed:
-            context.bot.send_message(chat_id=update.message.chat_id, text="Sorry, you are not allowed to talk with "
+            context.bot.send_message(chat_id=update.message.chat_id, text="Sorry, you are not allowed to talk to "
                                                                           "me. Bye bye! :)")
 
 
@@ -48,13 +48,13 @@ class TheMightinderBot:
             if os.path.isfile(parent_folder + STATSFILE):
                 statsfile = open(parent_folder + STATSFILE, "r")
                 lines = statsfile.readlines()
-                context.bot.send_message(chat_id=self.myUserID, text="This are your stats for today:")
+                context.bot.send_message(chat_id=self.myUserID, text="These are your stats for the last session:")
 
                 message = ''.join(lines)
                 context.bot.send_message(chat_id=self.myUserID, text=message)
             else:
-                context.bot.send_message(chat_id=self.myUserID, text="Today there is no statistics to show you. Sorry "
-                                                                     ":(")
+                context.bot.send_message(chat_id=self.myUserID, text="There are no statistics to show you yet. "
+                                                                     "Come back later :)")
 
     def stats(self, update, context):
 
