@@ -7,6 +7,7 @@ global running_flag
 def set_running_state(state):
     global running_flag
 
+    print("running_flag set to: " + str(state))
     running_flag = state
 
 # Mutex lock to change running flag
@@ -16,6 +17,7 @@ def change_running_state():
 
     stop_lock.acquire()
     try:
+        print("Changing flag from " + str(running_flag) + "to " + str(not running_flag))
         running_flag = not running_flag
     finally:
         stop_lock.release()
