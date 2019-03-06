@@ -89,8 +89,6 @@ class TheMightinder:
 
         action = self.check_bio(user)
         if (random() < self.dislike_rate) and action == 0:
-            self.like_count += 1
-            self.dislike_count += 1
             return -1
         else:
             return action
@@ -122,7 +120,7 @@ class TheMightinder:
                             if reaction == 0:
                                 u.like()
                                 print(Fore.WHITE + '[INFO] Liked ' + u.name)
-                                
+                                self.like_count += 1
                                 stopper -= 1
 
                                 sleep(randint(1, 2))
@@ -130,11 +128,13 @@ class TheMightinder:
                             elif reaction == 1:
                                 u.superlike()
                                 print(Fore.WHITE + '[INFO] SuperLiked ' + u.name)
+                                self.superlike_count += 1
                                 sleep(randint(1, 2))
 
                             elif reaction == -1:
                                 u.dislike()
                                 print(Fore.WHITE + '[INFO] Disliked ' + u.name)
+                                self.dislike_count += 1
                                 sleep(randint(1, 2))
                         except ValueError:
                             print(Fore.RED + "[ERROR] ValueError")
@@ -200,7 +200,7 @@ class TheMightinder:
         sys.exit()
 
     @threaded
-    def start_liker(self, type, max_likes=25):
+    def start_liker(self, type, max_likes=20):
         if type == "m":
             self.marathon()
         else:
@@ -213,10 +213,12 @@ class TheMightinder:
 
     def show_stats(self):
         total_stats = self.like_count + self.dislike_count + self.superlike_count
-        print(Fore.WHITE + "[INFO] Total interactions performed: " + str(total_stats))
-        print(Fore.WHITE + "[INFO] Superlikes performed: " + str(self.superlike_count))
-        print(Fore.WHITE + "[INFO] Likes performed: " + str(self.like_count))
-        print(Fore.WHITE + "[INFO] Dislikes performed: " + str(self.dislike_count))
+        print(Fore.WHITE + "//////////////////////////////////////////////////")
+        print(Fore.WHITE + "//  Total interactions performed:\t" + str(total_stats) + "\t//")
+        print(Fore.WHITE + "//  Superlikes performed:\t\t"+ Fore.MAGENTA + str(self.superlike_count) + Fore.WHITE + "\t//")
+        print(Fore.WHITE + "//  Likes performed:\t\t\t"+ Fore.GREEN + str(self.like_count) + Fore.WHITE + "\t//")
+        print(Fore.WHITE + "//  Dislikes performed:\t\t\t"+ Fore.YELLOW + str(self.dislike_count) + Fore.WHITE + "\t//")
+        print(Fore.WHITE + "//////////////////////////////////////////////////")
 
 
     def print_stats(self):
@@ -243,13 +245,10 @@ class TheMightinder:
     def check_bio(self, user):
         if any(word in user.bio.lower() for word in BIO_BLACKLIST):
             print ("Dislike bio: " + user.bio.lower())
-            self.dislike_count += 1
             return -1
         elif any(word in user.bio.lower() for word in BIO_LOVELIST) and (self.check_superswipes() > 0):
             print ("Nice bio: " + user.bio.lower())
-            self.superlike_count += 1
             return 1
         else:
-            self.like_count += 1
             return 0
 
