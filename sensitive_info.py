@@ -1,0 +1,6 @@
+FACEBOOK_USER = ""
+FACEBOOK_PASSWORD = ""
+APITOKEN = ""
+TG_USERNAME = "@XXXX"
+BIO_BLACKLIST = ['ons', 'test', '420']
+BIO_LOVELIST = ['amor']

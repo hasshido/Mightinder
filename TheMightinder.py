@@ -7,9 +7,12 @@ import sys
 import os
 from random import random, randint
 from time import sleep
-from settings import *
 from colorama import Fore
 from auxiliary_functions import threaded, check_running, file_lock, change_running_state
+
+# MighTinder config files
+from settings import *
+from sensitive_info import *
 
 
 class TheMightinder:

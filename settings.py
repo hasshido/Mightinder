@@ -1,11 +1,3 @@
-
-FACEBOOK_USER = ""
-FACEBOOK_PASSWORD = ""
-APITOKEN = ""
-TG_USERNAME = "@Nested_tags"
-BIO_BLACKLIST = ['ons', 'test', '420']
-BIO_LOVELIST = ['amor']
-
 SWIPES_REFRESH_TIMEOUT = 43500
 
 MOBILE_USER_AGENT = "Mozilla/5.0 (Linux; U; en-gb; KFTHWI Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) " \
