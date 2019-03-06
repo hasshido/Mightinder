@@ -13,7 +13,7 @@ FB_AUTH_URL = "https://www.facebook.com/v2.6/dialog/oauth?redirect_uri=fb4648913
 
 STATSFILE = "stats.txt"
 HELPSTRING = "This is TheMightinderBot help.\n" + \
-            "<b>Available commands:</b>\n" + \
+            "**Available commands:**\n" + \
             "/start - Starts bot functionality and checks username\n" + \
             "/stop - Stops all kind of execution\n" + \
             "/stats - Gets last session Tinder stats of current user\n" + \
