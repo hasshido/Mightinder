@@ -1,5 +1,9 @@
-SWIPES_REFRESH_TIMEOUT = 43500
 
+FACEBOOK_USER = ""
+FACEBOOK_PASSWORD = ""
+BIO_BLACKLIST = ['vox', 'izal', 'pp']
+BIO_LOVELIST = ['amor']
+SWIPES_REFRESH_TIMEOUT = 43500
 MOBILE_USER_AGENT = "Mozilla/5.0 (Linux; U; en-gb; KFTHWI Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) " \
                     "Silk/3.16 Safari/535.19 "
 FB_AUTH_URL = "https://www.facebook.com/v2.6/dialog/oauth?redirect_uri=fb464891386855067%3A%2F%2Fauthorize%2F&display" \
@@ -13,13 +17,13 @@ FB_AUTH_URL = "https://www.facebook.com/v2.6/dialog/oauth?redirect_uri=fb4648913
 
 STATSFILE = "stats.txt"
 HELPSTRING = "This is TheMightinderBot help.\n" + \
-            "**Available commands:**\n" + \
+            "<b>Available commands:</b>\n" + \
             "/start - Starts bot functionality and checks username\n" + \
             "/stop - Stops all kind of execution\n" + \
             "/stats - Gets last session Tinder stats of current user\n" + \
             "/start_autolike - Starts one iteration of the auto-liker\n" + \
             "/start_marathon - Starts a continue execution of the auto-liker\n" + \
             "/help - Shows this message"
-NOT_AUTH_STRING = "Sorry, you are not allowed to talk with me. Please use /start to authenticate first"
-STATS_HOURS_INTERVAL = 1440 # 60m * 24h
 
+STATS_HOURS_INTERVAL = 1440 # 60m * 24h
+TG_USERNAME = "@w1s3m4n"
