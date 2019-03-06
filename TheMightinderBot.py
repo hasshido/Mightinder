@@ -1,7 +1,10 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-from settings import *
 import logging
 import os, sys
+
+# MighTinder config files
+from settings import *
+from sensitive_info import *
 
 
 
