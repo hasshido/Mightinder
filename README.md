@@ -10,6 +10,7 @@
 
 ### Usage
 
+
 ```
 usage: python Mightinder.py 
 		     
@@ -17,28 +18,44 @@ optional arguments:
 ----------------------------------------------------------------------------
   -h, --help            Shows help message and exit
   -a, --auto            AutoLike until out of likes [default]
-  -r DISLIKER, --ratio DISLIKER		Sets the ratio of dislikes (1 is 100%)		    
+  -r [1-100], --ratio [1-100]		Sets the ratio of dislikes (1 is 1%)		    
   -m, --marathon	Keeps the program running and AutoLikes every 12h. 
   -b, --bot		Also starts the Telegram Bot instance
 ----------------------------------------------------------------------------
 ```
 
+#### Telegram Bot usage
+```
+usage: Once core is running, Talk to him at @TheMighTinderBot
+
+Options and commands:
+
+ - /start
+ - /help
+ - /stats
+ - /start autoliker / marathon / tndrMon
+ - /stop autoliker / marathon / tndrMon
+ - more to come ;)
+```
+
+
 ## TODO List:
 
 ### Functionalities
 These are the intended next functionalities that will be included into **MighTinder**: 
- - Set dislike ratio as an argument
+
  - Ask for user/pass after token unsuccesful
  - Study how to implement TndrMon (Separate thread?)
 	 - Improve TndrLocalizer with axis progression technique for greater precision
 	 - Improve TndrLocalizer to return coordinates
 	 - Improve TndrLocalizer to return coordinates over time for certain user ID
 		 - Generate KML maps for Google Maps importing
+		 - Do KML format support time as a coordinate?
  - Register match position on liking, for study purposes
 	 - Seems like the matchs are always located around the third swipe:
 	 - This could be "exploitable" with multiple "get nearby users" and swiping the third card
  - Telegram Bot
-	 - Remote control of program execution
+	 - [**Almost!**] Remote control of program execution
 	 - Document the remote control capabilities
 	 - Setup new matching position through attached location
 
@@ -49,12 +66,11 @@ These are the intended next functionalities that will be included into **MighTin
 	 - `User.py gives schools id error:  set generic exception catch`
  - Fix behaviour on "Bio_check" events
  	 - `print correctly on console`
- - Settings folder should be in .gitignore to avoid APIKEY leaking
-	 - Also, APKIEY should be on settings folder
     
 ## Done
  - Auto-like stack of swipes
- - Implemented access to [Remaining Superlikes]
+ - Set dislike ratio as an argument
+ - Implement access to [Remaining Superlikes]
  - Marathon mode (sleep through swiping timeout)
  - Filters
 	 - Dislike filter
