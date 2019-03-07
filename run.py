@@ -6,6 +6,8 @@ import argparse
 
 if __name__ == "__main__":
 
+    
+
     parser = argparse.ArgumentParser()
     parser.add_argument("-a", "--auto", help="AutoLike until out of likes [default]", action="store_true")
     parser.add_argument("-r", "--ratio", type=check_positive, default=1, help="Percentage dislake_rate. If not "
@@ -13,10 +15,15 @@ if __name__ == "__main__":
     parser.add_argument("-m", "--marathon", help="Keeps the program running and AutoLikes every 12h. Ideal for AFK "
                                                  "Farming.", action="store_true")
     parser.add_argument("-b", "--bot", help="Starts the Tinder bot TheMightinderBot for Telegram", action="store_true")
+    parser.add_argument("-v", "--verbose", help="Verbose mode", action="store_true")
     args = parser.parse_args()
     args_dict = vars(args)
     n_args_not_empty = sum(1 for arg_value in args_dict.values() if arg_value)
 
+
+    ## Whenever we want to put some extra info for verbose mode
+    ## if args.verbose:
+        ### TO SOLVE 
     if args.marathon and args.auto:
         raise argparse.ArgumentTypeError("Invalid configuration. You have selected both -m and -a. Select just one.")
 

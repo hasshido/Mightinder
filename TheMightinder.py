@@ -8,6 +8,7 @@ import os
 from random import random, randint
 from time import sleep
 from colorama import Fore
+import logging
 from auxiliary_functions import threaded, check_running, file_lock, change_running_state
 
 # MighTinder config files
