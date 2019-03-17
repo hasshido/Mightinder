@@ -4,7 +4,6 @@ from TndrLocalizer import TndrLocalizer
 from auxiliary_functions import check_positive, set_running_state
 import argparse
 
-
 if __name__ == "__main__":
 
     
@@ -34,7 +33,7 @@ if __name__ == "__main__":
 
     theMightinder = TheMightinder(dislike_ratio)
     theMightinderBot = TheMightinderBot()
-    TndrLocalizer = TndrLocalizer(theMightinder.session)
+    tndrLocalizer = TndrLocalizer(theMightinder.session)
 
     set_running_state(True)
 
@@ -48,7 +47,7 @@ if __name__ == "__main__":
         theMightinder.start_liker("m")
 
     elif args.localizer:
-        TndrLocalizer(theMightinder.session)
+        tndrLocalizer.localize()
 
 
 
