@@ -19,8 +19,9 @@ optional arguments:
   -h, --help            Shows help message and exit
   -a, --auto            AutoLike until out of likes [default]
   -r [1-100], --ratio [1-100]		Sets the ratio of dislikes (1 is 1%)		    
-  -m, --marathon	Keeps the program running and AutoLikes every 12h. 
-  -b, --bot		Also starts the Telegram Bot instance
+  -m, --marathon		Keeps the program running and AutoLikes every 12h. 
+  -b, --bot				Also starts the Telegram Bot instance
+  -l, --localizer		Track positions of matches
 ----------------------------------------------------------------------------
 ```
 
@@ -45,6 +46,7 @@ Options and commands:
 These are the intended next functionalities that will be included into **MighTinder**: 
 
  - Ask for user/pass after token unsuccesful
+
  - Study how to implement TndrMon (Separate thread?)
 	 - Improve TndrLocalizer with axis progression technique for greater precision
 	 - Improve TndrLocalizer to return coordinates
@@ -58,6 +60,7 @@ These are the intended next functionalities that will be included into **MighTin
 	 - [**Almost!**] Remote control of program execution
 	 - Document the remote control capabilities
 	 - Setup new matching position through attached location
+	 - Add TndrMon as thread
 
 
 ### Fixes
@@ -78,3 +81,4 @@ These are the intended next functionalities that will be included into **MighTin
  - Implement thread execution
 	 - Execute **Telegram Bot** on another thread
 		 - Show stats from current session
+ - Implement TndrLocalizer
