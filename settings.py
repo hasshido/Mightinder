@@ -11,6 +11,8 @@ FB_AUTH_URL = "https://www.facebook.com/v2.6/dialog/oauth?redirect_uri=fb4648913
               "=464891386855067&ret=login&sdk=ios&logger_id=30F06532-A1B9-4B10-BB28-B29956C71AB1&ext=1470840777&hash" \
               "=AeZqkIcf-NEW6vBd "
 
+parent_folder = os.path.dirname(os.path.realpath(sys.argv[0])) + "/"
+
 STATSFILE = "stats.txt"
 HELPSTRING = "This is TheMightinderBot help.\n" + \
             "**Available commands:**\n" + \

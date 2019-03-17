@@ -1,5 +1,6 @@
 from TheMightinderBot import TheMightinderBot
 from TheMightinder import TheMightinder
+from TndrLocalizer import TndrLocalizer
 from auxiliary_functions import check_positive, set_running_state
 import argparse
 
@@ -15,6 +16,7 @@ if __name__ == "__main__":
     parser.add_argument("-m", "--marathon", help="Keeps the program running and AutoLikes every 12h. Ideal for AFK "
                                                  "Farming.", action="store_true")
     parser.add_argument("-b", "--bot", help="Starts the Tinder bot TheMightinderBot for Telegram", action="store_true")
+    parser.add_argument("-l", "--localizer", help="Track your matches", action="store_true")
     parser.add_argument("-v", "--verbose", help="Verbose mode", action="store_true")
     args = parser.parse_args()
     args_dict = vars(args)
@@ -32,6 +34,7 @@ if __name__ == "__main__":
 
     theMightinder = TheMightinder(dislike_ratio)
     theMightinderBot = TheMightinderBot()
+    TndrLocalizer = TndrLocalizer(theMightinder.session)
 
     set_running_state(True)
 
@@ -39,10 +42,13 @@ if __name__ == "__main__":
         theMightinderBot.runBot()
 
     if n_args_not_empty == 1 or args.auto:
-        theMightinder.start_liker("a", max_likes=1)
+        theMightinder.start_liker("a", max_likes=200)
 
     elif args.marathon:
         theMightinder.start_liker("m")
+
+    elif args.localizer:
+        TndrLocalizer(theMightinder.session)
 
 
 

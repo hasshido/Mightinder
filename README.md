@@ -33,8 +33,8 @@ Options and commands:
  - /start
  - /help
  - /stats
- - /start autoliker / marathon / tndrMon
- - /stop autoliker / marathon / tndrMon
+ - /start_autoliker / /start_marathon / /start_tndrMon
+ - /stop_autoliker / /stop_marathon / /stop_tndrMon
  - more to come ;)
 ```
 
