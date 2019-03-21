@@ -4,8 +4,10 @@ import argparse
 import lxml
 import os, sys
 import random
+import time
 from polycircles import polycircles
 from settings import *
+
 
 class GeoPoint():
 
@@ -76,6 +78,8 @@ class TndrLocalizer:
                     inner_polycircle = polycircles.Polycircle(latitude=point.lat,longitude=point.lon,radius=distances[j][i]*1600-radius_size/2,number_of_vertices=50)
                     pol = kmlObject[i].newpolygon(name="test"+str(j),outerboundaryis=outer_polycircle.to_kml(),innerboundaryis=inner_polycircle.to_kml())
                     pol.style.polystyle.color = simplekml.Color.changealphaint(100, simplekml.Color.red)
+                    pol.timestamp.when=time.strftime("%Y-%m-%d")
+
                     j += 1 
                 
                 kmlObject[i].save(parent_folder + "output/" + self.name_list[i] + "_" + id[-4:] + ".kml")

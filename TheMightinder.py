@@ -210,7 +210,7 @@ class TheMightinder:
         # We have finished the execution of any kind of function
         # We have to change the execution state to False
         if check_running():
-            change_running_state()
+            change_running_state(False)
 
     def show_stats(self):
         total_stats = self.like_count + self.dislike_count + self.superlike_count

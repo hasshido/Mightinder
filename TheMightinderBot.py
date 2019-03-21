@@ -61,7 +61,7 @@ class TheMightinderBot:
                                          parse_mode=telegram.ParseMode.HTML)
 
             else:
-                change_running_state()
+                change_running_state(False)
 
             context.bot.send_message(chat_id=update.message.chat_id, text="Done!\nYour tinder autolike has started.\n"
                                                                           "Good luck!")
@@ -140,13 +140,12 @@ class TheMightinderBot:
                                                                               "/start_autolike.")
 
             else:
-                change_running_state()
+                change_running_state(True)
                 theMightinder = TheMightinder()
                 theMightinder.start_liker("a")
-
-            context.bot.send_message(chat_id=update.message.chat_id, text="Done!\nYour tinder autolike has started.\n"
-                                                                          "Good luck!")
-
+                context.bot.send_message(chat_id=update.message.chat_id, text="Done!\nYour tinder autolike has started.\n"
+                                                                            "Good luck!")
+                change_running_state(False)
         else:
             context.bot.send_message(chat_id=update.message.chat_id, text=NOT_AUTH_STRING)
 
@@ -168,7 +167,7 @@ class TheMightinderBot:
                                          parse_mode=telegram.ParseMode.HTML)
 
             else:
-                change_running_state()
+                change_running_state(True)
                 theMightinder = TheMightinder()
                 theMightinder.start_liker("m")
 
