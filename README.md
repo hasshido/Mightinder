@@ -1,4 +1,6 @@
-# README
+# README - Deprecated
+
+_Note: after an API update a few years ago, this crashed dramatically and we stopped our investigation. Feel free to use any code here for research and learning purposes_
 
 ### Installation
 
